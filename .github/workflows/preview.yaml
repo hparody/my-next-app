@@ -7,6 +7,19 @@ on:
     branches-ignore:
       - prod
 jobs:
+  Test-Next:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
+      - name: Run Linting
+        run: npm run test
   Deploy-Preview:
     runs-on: ubuntu-latest
     steps:

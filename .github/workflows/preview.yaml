@@ -7,7 +7,7 @@ on:
     branches-ignore:
       - prod
 jobs:
-  Test-Next:
+  Test-NextJS:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +18,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Run Tests
-      - name: Run Linting
         run: npm run test
   Deploy-Preview:
     runs-on: ubuntu-latest
@@ -32,3 +31,4 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+    needs: Test-NextJS
